@@ -11,6 +11,8 @@ services:
     envVars:
       - key: OCR_BACKEND
         value: docling
+      - key: MISTRAL_API_KEY
+        sync: false
       - key: DATA_DIR
         value: /data
       - key: JOB_TTL_SECONDS
