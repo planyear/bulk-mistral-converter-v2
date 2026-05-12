@@ -1,12 +1,15 @@
 services:
   - type: web
     name: bulk-doc-converter
-    runtime: docker
+    runtime: python
     plan: standard
+    pythonVersion: "3.11"
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     disk:
       name: docling-cache
-      mountPath: /home/app/.cache/docling
+      mountPath: /opt/render/.cache/docling
       sizeGB: 1
     envVars:
       - key: OCR_BACKEND
@@ -14,7 +17,7 @@ services:
       - key: MISTRAL_API_KEY
         sync: false
       - key: DATA_DIR
-        value: /data
+        value: /opt/render/project/src/data
       - key: JOB_TTL_SECONDS
         value: "3600"
       - key: MAX_UPLOAD_BYTES
