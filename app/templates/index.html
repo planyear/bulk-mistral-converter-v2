@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulk Doc Converter</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Bulk Doc Converter</h1>
+    <p class="lede">Drop documents below. They will be converted to markdown and zipped for download.</p>
+
+    <div id="drop" class="drop">
+      <p>Drag &amp; drop files here, or</p>
+      <label class="btn">
+        <input id="file-input" type="file" multiple hidden />
+        Choose files
+      </label>
+      <p class="hint">PDF, DOCX, XLSX, CSV, TXT, MD, images (PNG, JPG, TIFF, WEBP).</p>
+    </div>
+
+    <div id="picked" class="picked" hidden>
+      <h2>Selected</h2>
+      <ul id="picked-list"></ul>
+      <button id="submit" class="btn">Upload &amp; convert</button>
+    </div>
+
+    <div id="status" class="status" hidden>
+      <h2>Status: <span id="status-label">queued</span></h2>
+      <table id="results">
+        <thead>
+          <tr><th>File</th><th>Kind</th><th>Status</th><th>Detail</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="error" class="error" hidden></p>
+      <a id="download" class="btn" hidden href="#">Download zip</a>
+    </div>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

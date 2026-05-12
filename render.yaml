@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: bulk-doc-converter
+    runtime: docker
+    plan: standard
+    healthCheckPath: /health
+    disk:
+      name: docling-cache
+      mountPath: /home/app/.cache/docling
+      sizeGB: 1
+    envVars:
+      - key: OCR_BACKEND
+        value: docling
+      - key: DATA_DIR
+        value: /data
+      - key: JOB_TTL_SECONDS
+        value: "3600"
+      - key: MAX_UPLOAD_BYTES
+        value: "209715200"
+      - key: MAX_FILES_PER_JOB
+        value: "50"
+      - key: UPLOAD_RATE_LIMIT
+        value: "10/minute"
